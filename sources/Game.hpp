@@ -19,15 +19,15 @@ namespace coup {
             size_t id = 0;
             vector<string> players();
             string turn();
-            void addPlayer(string s);
+            void addPlayer(const string &s);
             void addPlayer_after(string s);
             void inc();
-            void remove_player(string name);
+            void remove_player(const string &s);
             //Player * get_last_coup() {return this->last_coup;};
             //void set_last_coup(Player * p) {this->last_coup = p;};
             string winner ();
             void next_turn ();
-            void back_to_game(size_t n, string s);
+            void back_to_game(size_t n, const string &s);
             int get_num_of_turns() {return this->num_of_turns; };
         
     };

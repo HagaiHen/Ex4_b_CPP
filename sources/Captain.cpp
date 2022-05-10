@@ -4,15 +4,16 @@
 #include <iostream>
 
 namespace coup {
-    void coup::Captain::block (Player &c) {
+    void coup::Captain::block (Player &c) const{
+        this->role();
         if (c.get_last_oper() != "steal") {
             throw "Can't reject";
-        } else {
-            c.dec();
-            c.dec();
-            c.get_steal_from()->inc();
-            c.get_steal_from()->inc();
         }
+            c.dec();
+            c.dec();
+            c.get_steal_from()->inc();
+            c.get_steal_from()->inc();
+        
     }
     void coup::Captain::steal (Player &p) {
         if (this->name != this->game->turn()) {
@@ -47,7 +48,7 @@ namespace coup {
             
         }
     }
-    Captain::Captain (Game &g, string s) : Player(g,s) {
+    Captain::Captain (Game &g, const string &s) : Player(g,s) {
         this->game = &g;
         this->name = s;
         this->money = 0;

@@ -10,9 +10,9 @@ namespace coup {
 
         
         public:
-            void block(Player &p);
+            void block(Player &p) const;
             void tax();
-            Duke (Game &g, std::string s);
+            Duke (Game &g, const string &s);
             string role() const {return string("Duke"); };
 
     };

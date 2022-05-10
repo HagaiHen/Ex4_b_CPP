@@ -40,27 +40,27 @@ namespace coup {
         // cout << this->list[tmp] << endl;
     }
 
-    void coup::Game::addPlayer(string s) {
+    void coup::Game::addPlayer(const string &s) {
         this->list.push_back(s);
     }
 
-    void coup::Game::back_to_game(size_t n, string s) {
+    void coup::Game::back_to_game(size_t n, const string &s) {
         this->list[n] = s;
         cout << "revive " << n << endl;
     }
 
-    void coup::Game::addPlayer_after(string s) {
+    // void coup::Game::addPlayer_after(string s) {
         
-        this->list.clear();
-        vector<string> vec;
-        for (size_t i = 0; i < this->list.size(); i++) {
-            vec.push_back(this->list[i]);
-        }
-        vec.push_back(s);
-        this->list = vec;
+    //     this->list.clear();
+    //     vector<string> vec;
+    //     for (size_t i = 0; i < this->list.size(); i++) {
+    //         vec.push_back(this->list[i]);
+    //     }
+    //     vec.push_back(s);
+    //     this->list = vec;
         
-        //cout << this->list.size() << endl;
-    }
+    //     //cout << this->list.size() << endl;
+    // }
 
 
 
@@ -68,7 +68,7 @@ namespace coup {
     //TODO: block by contessa
     //TODO: kiiled by assian
 
-    void coup::Game::remove_player(string s) {
+    void coup::Game::remove_player(const string &s) {
         for (size_t i = 0; i < this->list.size(); i++) {
             if (this->list[i] == s){
                 this->list[i] = "KILLED";

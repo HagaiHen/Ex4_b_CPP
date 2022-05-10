@@ -4,7 +4,8 @@
 
 namespace coup {
     
-    void coup::Duke::block(Player &p) {
+    void coup::Duke::block(Player &p) const{
+        this->role();
         if (p.get_last_oper() == "foreign_aid") {
             p.dec();
             p.dec();
@@ -22,7 +23,7 @@ namespace coup {
         this->game->next_turn();
     }
     
-    Duke::Duke (Game &g, string s) : Player(g,s) {
+    Duke::Duke (Game &g, const string &s) : Player(g,s) {
         this->game = &g;
         this->name = s;
         this->money = 0;

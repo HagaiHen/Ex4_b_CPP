@@ -4,8 +4,11 @@
 #include <iostream>
 using namespace std;
 
+const int COST_OF_COUP = 7;
+const int COST_OF_COUP_ASS = 3;
+
 namespace coup {
-    Assassin::Assassin (Game &g, string s) : Player(g,s) {
+    Assassin::Assassin (Game &g, const string &s) : Player(g,s) {
         this->game = &g;
         this->name = s;
         this->money = 0;
@@ -23,17 +26,17 @@ namespace coup {
         if (!exist) {
             throw "The player already dead";
         }
-        if (this->money >= 7) {
+        if (this->money >= COST_OF_COUP) {
             cout << "%" << endl;
             this->last_oper = "coup";
-            this->money-=7;
+            this->money-=COST_OF_COUP;
             this->game->inc();
             this->game->next_turn();
         } else {
-            if (this->money >= 3) {
+            if (this->money >= COST_OF_COUP_ASS) {
                 cout << "%" << endl;
                 this->last_oper = "coup3";
-                this->money-=3;
+                this->money-=COST_OF_COUP_ASS;
                 this->game->inc();
                 this->game->next_turn();
             } else {

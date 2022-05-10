@@ -20,7 +20,7 @@ namespace coup {
             size_t id;
             Player * couped;
             void income();
-            int coins();
+            int coins() const;
             void foreign_aid();
             virtual string role() const = 0;
             virtual void coup(Player &p); 
@@ -29,7 +29,7 @@ namespace coup {
             void dec() { this->money--;};
             void inc() { this->money++;};
             string get_name() {return this->name;};
-            Player (Game &g, string s);
+            Player (Game &g, const string &s);
             Player * get_steal_from() {return this->steal_from; };
     };
     

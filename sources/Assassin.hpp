@@ -9,7 +9,7 @@ namespace coup {
         
         public:
             
-            Assassin (Game &g, std::string s);   
+            Assassin (Game &g, const string &s);   
             string role() const {return string("Assassin"); };
             void coup(Player &p);   
 

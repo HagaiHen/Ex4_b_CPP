@@ -23,7 +23,8 @@ namespace coup {
         
     }
 
-    void coup::Ambassador::block (Captain &c) {
+    void Ambassador::block (Captain &c) const{
+        this->role();
         if (c.get_last_oper() == "steal") {
             c.dec();
             c.dec();
@@ -35,7 +36,7 @@ namespace coup {
         }
     }
 
-    Ambassador::Ambassador (Game &g, string s) : Player(g,s) {
+    Ambassador::Ambassador (Game &g, const string &s) : Player(g,s) {
         this->game = &g;
         this->name = s;
         this->money = 0;
