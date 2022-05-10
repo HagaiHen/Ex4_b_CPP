@@ -6,17 +6,47 @@
 namespace coup {
 
     std::vector<std::string> coup::Game::players() {
-        return this->list;
+        vector<string> vec;
+        for (size_t i = 0; i < this->list.size(); i++) {
+            if (this->list[i] != "KILLED") {
+                vec.push_back(this->list[i]);
+            }
+        }
+        return vec;
     }
     std::string coup::Game::turn() {
         //cout << "hey" << endl;
-        size_t tmp = (size_t)this->num_of_turns % this->list.size();
+        size_t tmp = this->curr_turn % this->list.size();
+        // size_t tmp = (size_t) this->num_of_turns % this->list.size();
+        // while (this->list[tmp] == "KILLED") {
+        //     tmp = (tmp +1) % this->list.size();
+        // }
         //cout << tmp << endl;
         return this->list[tmp];
     }
 
+    void coup::Game::next_turn() {
+        // cout << this->curr_turn << endl; 
+        //cout << "TTT" << endl;
+        this->curr_turn = (this->curr_turn+1)%this->list.size();
+        //cout << "TTT" << endl;
+        //cout << this->curr_turn << endl;
+        while (this->list[this->curr_turn] == "KILLED") {
+            //cout << "TTT" << endl;
+            this->curr_turn = (this->curr_turn+1)%this->list.size();
+        }
+        //cout << this->curr_turn << endl;
+        // cout << this->turn() << endl;
+        // cout << this->list[tmp] << endl;
+    }
+
     void coup::Game::addPlayer(string s) {
         this->list.push_back(s);
+    }
+
+    void coup::Game::back_to_game(size_t n, string s) {
+        this->list[n] = s;
+        cout << "revive " << n << endl;
     }
 
     void coup::Game::addPlayer_after(string s) {
@@ -34,13 +64,14 @@ namespace coup {
 
 
 
-    
+    //TODO: fix players() for size.
+    //TODO: block by contessa
+    //TODO: kiiled by assian
 
     void coup::Game::remove_player(string s) {
         for (size_t i = 0; i < this->list.size(); i++) {
             if (this->list[i] == s){
-                int j = i;
-                this->list.erase(this->list.begin() + j);
+                this->list[i] = "KILLED";
             }
         }
     }
@@ -51,11 +82,11 @@ namespace coup {
     } 
 
     string coup::Game::winner() {
-        if (this->list.size() == 1) {
-            cout << this->list[0] << endl;
+        if (this->players().size() == 1 && this->num_of_turns > 0) {
+            //cout << this->players()[0] << endl;
         } else {
             throw "Error";
         }
-        return this->list[0];
+        return this->players()[0];
     }
 }

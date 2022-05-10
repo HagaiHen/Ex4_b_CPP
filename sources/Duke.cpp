@@ -14,8 +14,12 @@ namespace coup {
     }
 
     void coup::Duke::tax() {
+        if (this->name != this->game->turn()) {
+            throw "Not your turn";
+        }
         this->money+=3;
         this->game->inc();
+        this->game->next_turn();
     }
     
     Duke::Duke (Game &g, string s) : Player(g,s) {
@@ -23,6 +27,5 @@ namespace coup {
         this->name = s;
         this->money = 0;
         (*this->game).addPlayer(s);
-        
     }
 }

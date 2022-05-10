@@ -15,7 +15,12 @@ namespace coup {
             p1.dec();
             p2.inc();
             this->game->inc();
-        } 
+            this->game->next_turn();
+        } else {
+            
+            throw "you can transfer";
+        }
+        
     }
 
     void coup::Ambassador::block (Captain &c) {

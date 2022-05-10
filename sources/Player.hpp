@@ -1,9 +1,9 @@
+#pragma once
 #include "Game.hpp"
 #include <string>
 
 using namespace std;
 //using namespace coup;
-#pragma once
 
 namespace coup {
 
@@ -15,8 +15,10 @@ namespace coup {
             Game * game;
             string last_oper;
             Player * steal_from;
-
+            
         public:
+            size_t id;
+            Player * couped;
             void income();
             int coins();
             void foreign_aid();

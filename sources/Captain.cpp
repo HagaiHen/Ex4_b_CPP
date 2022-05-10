@@ -15,7 +15,9 @@ namespace coup {
         }
     }
     void coup::Captain::steal (Player &p) {
-        
+        if (this->name != this->game->turn()) {
+            throw "Not your turn";
+        }
         if (p.coins() >= 2) {
             p.dec();
             p.dec();
@@ -23,8 +25,26 @@ namespace coup {
             this->last_oper = "steal";
             this->steal_from = &p;
             this->game->inc();
+            this->game->next_turn();
         } else {
-            throw "Not enough money";
+            if (p.coins() == 1) {
+                
+                p.dec();
+                this->money += 1;
+                this->last_oper = "steal";
+                this->steal_from = &p;
+                this->game->inc();
+                this->game->next_turn();
+            } else {
+
+                if (p.coins() == 0) {
+                    this->last_oper = "steal";
+                    this->steal_from = &p;
+                    this->game->inc();
+                    this->game->next_turn();
+                }
+            }
+            
         }
     }
     Captain::Captain (Game &g, string s) : Player(g,s) {

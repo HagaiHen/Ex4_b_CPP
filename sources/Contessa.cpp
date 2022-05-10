@@ -14,11 +14,9 @@ namespace coup {
             cout << p.role() << endl;
             throw "cant reject";
         } else {
-            p.inc();
-            p.inc();
-            p.inc();
-            Player * tmp = (Player*)this->game->get_last_coup();
-            //this->game->addPlayer_after(tmp->get_name());
+            //Player * tmp = (Player*)this->game->get_last_coup();
+            // cout << "id " << p.couped->id <<  "   " << endl;
+            this->game->back_to_game(p.couped->id, p.couped->get_name());
         }
 
     }
